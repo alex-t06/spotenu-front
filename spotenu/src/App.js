@@ -7,33 +7,38 @@ import BandRegistration from "./pages/BandRegistration";
 import HomePageUser from "./pages/HomePageUser";
 import ListenerRegistration from "./pages/ListenerRegistration";
 import LoginPage from "./pages/LoginPage";
-import styled from "styled-components"
-import "rsuite/dist/styles/rsuite-default.css";
+import "fontsource-roboto";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
-const AppContainer = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`
+const darkTheme = createMuiTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#fff952",
+    },
+  },
+});
 
 const App = () => {
   return (
     <Router>
-      <AppContainer>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/register/admin' component={AdminRegistration} />
-          <Route exact path='/register/band' component={BandRegistration} />
-          <Route
-            exact
-            path='/register/listener'
-            component={ListenerRegistration}
-          />
-          <Route exact path='/approve/band' component={BandApprove} />
-          <Route exact path='/login' component={LoginPage} />
-          <Route exact path='/user' component={HomePageUser} />
-        </Switch>
-      </AppContainer>
+      <ThemeProvider theme={darkTheme}>
+        <main>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/register/admin' component={AdminRegistration} />
+            <Route exact path='/register/band' component={BandRegistration} />
+            <Route
+              exact
+              path='/register/listener'
+              component={ListenerRegistration}
+            />
+            <Route exact path='/approve/band' component={BandApprove} />
+            <Route exact path='/login' component={LoginPage} />
+            <Route exact path='/user' component={HomePageUser} />
+          </Switch>
+        </main>
+      </ThemeProvider>
     </Router>
   );
 };
